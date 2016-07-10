@@ -23,6 +23,16 @@ var GemCtrl = require('./controllers/gemController');
 
 var router = express.Router();
 
+/*
+  Funcion ejectuada ANTES de procesar cualquier peticion
+  Habilita CORS (Cross-Origin-Resource-Sharing), peticiones de otros dominios
+*/
+app.use(function(request, response, next) {
+  response.header("Access-Control-Allow-Origin", "*");
+  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 router.route('/gems')
   .get(GemCtrl.findAllGems)
   .post(GemCtrl.addGem);
