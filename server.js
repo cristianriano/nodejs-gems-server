@@ -25,7 +25,7 @@ var router = express.Router();
 
 router.route('/gems')
   .get(GemCtrl.findAllGems)
-  .post(Gem);
+  .post(GemCtrl.addGem);
 
 router.route('/gems/:id')
   .get(GemCtrl.findById);

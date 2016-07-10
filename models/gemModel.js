@@ -9,15 +9,15 @@ var review = {
 };
 
 var gemSchema = new Schema({
-  id:     { tpye: Number },
+  id:     { type: Number },
   name:    { type: String },
-  description:     { type: Number },
+  description:     { type: String },
   shine:  { type: Number },
   price:   { type: Number },
   rarity:  { type: Number },
   color:  { type: String },
   faces:  { type: Number },
-  images:  { type: [String]] },
+  images:  { type: [String] },
   reviews: { type: [review]}
 });
 

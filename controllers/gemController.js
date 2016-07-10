@@ -16,7 +16,7 @@ exports.findAllGems = function(request, response) {
 
 //GET - Return a Gem with specified ID
 exports.findById = function(request, response) {
-    Gem.findById(request.params.id, function(err, gem) {
+    Gem.findOne({ "id": request.params.id }, function(err, gem) {
       if(err) return response.send(500, err.message);
 
       console.log('GET /gems/' + request.params.id);
@@ -42,9 +42,9 @@ exports.addGem = function(request, response) {
         reviews:  []
     });
 
-    gem.save(function(err, tvshow) {
-        if(err) return response.status(500).send( err.message);
-    response.status(200).jsonp(tvshow);
+    gem.save(function(err, gem) {
+      if(err) return response.status(500).send( err.message);
+      response.status(200).jsonp(gem);
     });
 };
 
@@ -61,10 +61,10 @@ exports.addReview = function(request, response) {
         createdOn: Date.now
       });
 
-      gem.reviews.push(review);
-      gem.save(function(err, review)){
-        if(err) return response.status(500).send(err.message);
-        response.status(200).jsonp(review);
-      }
-    });
+    gem.reviews.push(review);
+    gem.save(function(err, review){
+      if(err) return response.status(500).send(err.message);
+      response.status(200).jsonp(review);
+    } );
+  });
 };
