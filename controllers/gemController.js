@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 // Almacena el modelo para serializar y deserealizar
 var Gem  = mongoose.model('Gem');
+var Review = mongoose.model('Review');
 
 // Se exporta las funciones para ser usados como Dependency Injection
 //GET - Return all Gems in the DB
@@ -53,12 +54,16 @@ exports.addReview = function(request, response) {
     console.log('POST');
     console.log(request.body);
 
-    Gem.findById(request.params.id, function(err, gem){
+    Gem.findOne({ "id": request.params.id }, function(err, gem){
+      var createTime;
+      if(request.body.createdOn) createTime = request.body.createdOn;
+      else createTime = Date.now;
+
       var review = new Review({
         stars: request.body.stars,
         body: request.body.body,
         author: request.body.author,
-        createdOn: Date.now
+        createdOn: createTime
       });
 
     gem.reviews.push(review);

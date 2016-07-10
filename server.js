@@ -18,7 +18,8 @@ app.use(bodyParser.json());
 app.use(methodOverride());
 
 // Import controllers y models
-var models  = require('./models/gemModel')(app, mongoose);
+var reviewModel  = require('./models/reviewModel')(app, mongoose);
+var gemModel  = require('./models/gemModel')(app, mongoose);
 var GemCtrl = require('./controllers/gemController');
 
 var router = express.Router();

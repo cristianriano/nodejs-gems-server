@@ -1,11 +1,11 @@
 var mongoose = require('mongoose'),
     Schema   = mongoose.Schema;
 
-var reveiwSchema = new Schema({
-  stars:    { type: Number },
+var reviewSchema = new Schema({
+  stars:    { type: Number, required: true },
   body:     { type: String },
-  author:  { type: String },
+  author:  { type: String, required: true },
   createdOn:   { type: Date, default: Date.now }
 });
 
-//module.exports = mongoose.model('Review', reveiwSchema);
+module.exports = mongoose.model('Review', reviewSchema);
