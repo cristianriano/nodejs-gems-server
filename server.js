@@ -31,6 +31,21 @@ var router = express.Router();
 app.use(function(request, response, next) {
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  response.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+
+  function afterResponse(){
+    console.log("METHOD: "+request.method);
+    console.log("URL"+request.url);
+    console.log(request.headers);
+    console.log(request.body);
+    console.log("-------------------");
+    console.log(response.headers);
+    console.log(response.body);
+  }
+  /*
+    Para hacer debugging se puede adjuntar una funcion para ejecutar al terminar la peticion ('finish') o cerrar la conexion ('close')
+      response.on('finish', afterResponse);
+  */
   next();
 });
 
@@ -43,6 +58,11 @@ router.route('/gems/:id')
 
 router.route('/gems/:id/reviews')
   .post(GemCtrl.addReview);
+
+router.route('/').get(function(request, response){
+  response.status(200);
+  response.send("Hello World!");
+})
 
 app.use(router);
 
