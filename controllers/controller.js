@@ -5,8 +5,8 @@ exports.renderRoot = function(req, res){
 
   // Variable con los datos que se pasan al template de Jade
   var data = {
-    title: "Titulo",
-    projectName: "Project name"
+    title: "Crafted Gems Store",
+    projectName: "Crafted Gems"
   };
 
   res.status(200);
