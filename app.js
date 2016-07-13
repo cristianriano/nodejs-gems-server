@@ -45,17 +45,11 @@ bootstrap.init({
 });
 */
 
-//----------------------------------------------IMPORT CONTROLLERS AND MODELS--------------------------------------------------------
+//----------------------------------------------IMPORT MODELS--------------------------------------------------------
 var reviewModel  = require('./models/reviewModel');
 var gemModel  = require('./models/gemModel');
 
-var GemCtrl = require('./controllers/gemController');
-var ctrl = require('./controllers/controller');
-
-
 //---------------------------------------------------------ROUTES--------------------------------------------------------------------
-var router = express.Router();
-
 /*
   Funcion ejectuada ANTES de procesar cualquier peticion
   Habilita CORS (Cross-Origin-Resource-Sharing), peticiones de otros dominios
@@ -81,21 +75,11 @@ app.use(function(request, response, next) {
   next();
 });
 
-router.route('/gems')
-  .get(GemCtrl.findAllGems)
-  .post(GemCtrl.addGem);
+var routes = require('./routes/index');
+var gemRoutes = require('./routes/gems');
 
-router.route('/gems/:id')
-  .get(GemCtrl.findById);
-
-router.route('/gems/:id/reviews')
-  .post(GemCtrl.addReview);
-
-router.route('/')
-  .get(ctrl.renderRoot);
-
-app.use(router);
-
+app.use('/', routes);
+app.use('/gems', gemRoutes);
 
 //------------------------------------------------------------START SERVER------------------------------------------------------------
 app.listen(8888, function() {
