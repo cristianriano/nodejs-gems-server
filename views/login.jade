@@ -1,30 +1,24 @@
 extend layout
 
+block style
+  link(rel="stylesheet", href="/stylesheets/login.css")
+
 block content
   // Main jumbotron for primary message
   .jumbotron
     .container
-      h1 Hello, word!
-      p This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.
+      h1 Welcome!
+      p This is the main page for the Crafted Gems Store. Is a demo for a webpage using Nodejs, Express and Mongodb. To start log-in to the page or create and account here
       p
-        a.btn.btn-primary.btn-lg(href="#", role="button") Learn more &raquo;
+        a.btn.btn-primary.btn-lg(href="/register", role="button") Sign-up &raquo;
           
   // Row columns
   .container
-    .row        
-      .col-md-4
-        h2 Heading
-        p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-        p
-          a.btn.btn-default(href="#", role="button") View details &raquo;
-      .col-md-4
-        h2 Heading
-        p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-        p
-          a.btn.btn-default(href="#", role="button") View details &raquo;
-      .col-md-4
-        h2 Heading
-        p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-        p
-          a.btn.btn-default(href="#", role="button") View details &raquo;
+    .row       
+      - for (var i=0; i<3; i++)
+        .col-md-4
+          h2 Heading
+          p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+          p
+            a.btn.btn-default(href="#", role="button") View details &raquo;
         
