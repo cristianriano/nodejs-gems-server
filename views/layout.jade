@@ -14,9 +14,9 @@ html
     include ./login-navbar
     
     // Messages using express-flash
-    - if(messages.info)
-      .message.info
-        span= messages.info
+    - each message, type in messages
+        //- Apply bootstrap alert class, and print message unescaped
+        div(class="alert alert-#{type}" role="alert")!= message
         
     block content
       

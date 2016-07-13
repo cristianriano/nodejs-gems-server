@@ -12,7 +12,7 @@ exports.addUser = function(req, res) {
   console.log(req.body);
 
   if(req.body.password != req.body.passwordRepeat){
-    req.flash('info', 'Error. Your passwords does not match');
+    req.flash('danger', '<strong>Error</strong>. Your passwords does not match');
     res.render('register', data);
   }
   else{
@@ -25,7 +25,7 @@ exports.addUser = function(req, res) {
     user.save(function(err, user) {
       if(err) return res.status(500).send(err.message);
       res.status(200);
-      req.flash('info', 'Success! Now you can log-in');
+      req.flash('success', '<strong>Success!</strong> Now you can log-in');
       res.render('register', data);
     });
   }

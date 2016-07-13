@@ -29,8 +29,7 @@ app.use(bodyParser.json());
 app.use(methodOverride());
 // Habilitar folder public
 app.use(express.static('public'));
-app.use(flash());
-//app.use(cookieParser());
+app.use(cookieParser('example sign'));
 /*
   Configura el uso de sesiones con Express. Parametros
     secret:              REQUERIDO. Es el string requerido para "firmar" la  cookie ID de sesiones
@@ -46,6 +45,7 @@ app.use(require('express-session')({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 /*
   Verifica el enviroment, si es development imprime el codigo html bonito, en varias lineas
   Para setear el enviroment en Windows:
