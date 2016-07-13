@@ -2,7 +2,11 @@ var express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
-    mongoose = require('mongoose');
+    mongoose = require('mongoose'),
+    cookieParser = require('cookie-parser'),
+    flash = require('express-flash'),
+    passport = require('passport'),
+    LocalStrategy = require('passport-local').Strategy;
 
 //-----------------------------------------------CONNECTION TO DB-------------------------------------------------------------
 mongoose.connect('mongodb://localhost/gems', function(err, res) {
@@ -15,18 +19,33 @@ mongoose.connect('mongodb://localhost/gems', function(err, res) {
 
 
 //-----------------------------------------------EXPRESS CONFIGURATION-------------------------------------------------------------
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
-app.use(methodOverride());
-
-// Habilitar folder public
-app.use(express.static('public'));
-
 // Indicar a Express el folder donde se encuentran los views de plantilla
 app.set('views', './views');
 // Especificar el motor de plantilla, en este caso Jade. Exiten (Pug, Mustache, EJS, Dust, etc)
 app.set('view engine', 'jade');
 
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+app.use(methodOverride());
+// Habilitar folder public
+app.use(express.static('public'));
+app.use(flash());
+//app.use(cookieParser());
+/*
+  Configura el uso de sesiones con Express. Parametros
+    secret:              REQUERIDO. Es el string requerido para "firmar" la  cookie ID de sesiones
+    resave:              Fuerza a volver a grabar la sesion incluso si esta no fue alterada durante la peticion
+    saveUninitialized:   Fuerza a grabar en la store las sesiones que no han sido iniciadas
+    maxAge:              Tiempo en milisegundos antes de que se autodestruya la cookie, en este caso 1 dia (24 horas)
+*/
+app.use(require('express-session')({
+  secret: 'example sign',
+  resave: false,
+  saveUninitialized: false,
+  maxAge: 86400000
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 /*
   Verifica el enviroment, si es development imprime el codigo html bonito, en varias lineas
   Para setear el enviroment en Windows:
@@ -48,6 +67,7 @@ bootstrap.init({
 //----------------------------------------------IMPORT MODELS--------------------------------------------------------
 var reviewModel  = require('./models/reviewModel');
 var gemModel  = require('./models/gemModel');
+var userModel = require('./models/userModel');
 
 //---------------------------------------------------------ROUTES--------------------------------------------------------------------
 /*
@@ -77,9 +97,11 @@ app.use(function(request, response, next) {
 
 var routes = require('./routes/index');
 var gemRoutes = require('./routes/gems');
+var userRoutes = require('./routes/users');
 
 app.use('/', routes);
 app.use('/gems', gemRoutes);
+app.use('/users', userRoutes);
 
 //------------------------------------------------------------START SERVER------------------------------------------------------------
 app.listen(8888, function() {
