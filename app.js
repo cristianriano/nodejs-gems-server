@@ -24,12 +24,12 @@ app.set('views', './views');
 // Especificar el motor de plantilla, en este caso Jade. Exiten (Pug, Mustache, EJS, Dust, etc)
 app.set('view engine', 'jade');
 
+// Habilitar folder public
+app.use(express.static('public'));
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(methodOverride());
-// Habilitar folder public
-app.use(express.static('public'));
-app.use(cookieParser('example sign'));
 /*
   Configura el uso de sesiones con Express. Parametros
     secret:              REQUERIDO. Es el string requerido para "firmar" la  cookie ID de sesiones
@@ -68,6 +68,12 @@ bootstrap.init({
 var reviewModel  = require('./models/reviewModel');
 var gemModel  = require('./models/gemModel');
 var userModel = require('./models/userModel');
+
+// Passport configuration
+//passport.use(new LocalStrategy(Account.authenticate()));
+passport.use(userModel.createStrategy());
+passport.serializeUser(userModel.serializeUser());
+passport.deserializeUser(userModel.deserializeUser());
 
 //---------------------------------------------------------ROUTES--------------------------------------------------------------------
 /*

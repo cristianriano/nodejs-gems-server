@@ -7,11 +7,11 @@ nav.navbar.navbar-inverse.navbar-fixed-top
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand(href="/")= projectName
+      a.navbar-brand(href="/") Crafted Gems
     div#navbar.navbar-collapse.collapse
       form.navbar-form.navbar-right(action="/login", method="post")
         .form-group
-          input.form-control(type="text", placeholder="Email")
+          input.form-control(type="text", placeholder="Email", name="email", required="true")
         .form-group
-          input.form-control(type="password", placeholder="Password")
+          input.form-control(type="password", placeholder="Password", name="password", required="true")
         button.btn.btn-success(type="submit") Log in

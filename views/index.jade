@@ -1,1 +1,5 @@
-extend login
+// Show normal index
+-if(!user)
+  include ./login
+-else
+  p Authenticated!!

@@ -20,8 +20,7 @@ exports.findById = function(request, response) {
   console.log('GET /gems/'+request.params.id);
   Gem.findOne({ "id": request.params.id }, function(err, gem) {
     if(err) return response.send(500, err.message);
-
-    console.log('GET /gems/' + request.params.id);
+    
     response.status(200).jsonp(gem);
   });
 };

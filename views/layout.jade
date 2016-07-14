@@ -1,17 +1,14 @@
 doctype
-//- Variables:
-//-    title: Titulo en el header
-//-    projectName: Nombre en la parte superior izquierda
 html
   head
     meta(charset="utf-8")
-    title #{title}
+    title Crafted Gems Store
     link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css", integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7", crossorigin="anonymous")
     block style
       link(rel="stylesheet", href="/stylesheets/style.css")
-    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js", integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS", crossorigin="anonymous")
   body
-    include ./login-navbar
+    -if(!user)
+      include ./login-navbar
     
     // Messages using express-flash
     - each message, type in messages
@@ -23,4 +20,7 @@ html
     .container(style="padding-top: 50px")
       footer
         p &copy; 2015 Company, Inc.
+        
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js", integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS", crossorigin="anonymous")
                     
