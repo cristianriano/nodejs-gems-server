@@ -6,7 +6,7 @@ var Review = mongoose.model('Review');
 // Se exporta las funciones para ser usados como Dependency Injection
 //GET - Return all Gems in the DB
 exports.findAllGems = function(request, response) {
-  Gem.find(function(err, gems) {
+  Gem.find({}).sort({id: -1}).exec(function(err, gems) {
     if(err) return response.send(500, err.message);
 
     console.log('GET /gems');
@@ -20,7 +20,7 @@ exports.findById = function(request, response) {
   console.log('GET /gems/'+request.params.id);
   Gem.findOne({ "id": request.params.id }, function(err, gem) {
     if(err) return response.send(500, err.message);
-    
+
     response.status(200).jsonp(gem);
   });
 };

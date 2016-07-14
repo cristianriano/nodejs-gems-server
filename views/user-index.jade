@@ -3,9 +3,6 @@ extend layout
 block style
   link(rel="stylesheet", href="/stylesheets/user-index.css")
   link(rel="stylesheet", href="/stylesheets/style.css")
-  script(type="text/javascript" src="/javascript/angular.min.js")
-  script(type="text/javascript" src="/javascript/app.js")
-  script(type="text/javascript" src="/javascript/products.js")
 
 block content
   .container.list-group(ng-controller="StoreController as store")
@@ -14,7 +11,12 @@ block content
         div.list-group-item(ng-repeat="product in products")
           h3 {{product.name}}
             em.pull-right {{product.price | currency}}
+          product-gallery
+          product-tabs
         
   
 block scripts
+  script(type="text/javascript" src="/javascript/angular.min.js")
+  script(type="text/javascript" src="/javascript/app.js")
+  script(type="text/javascript" src="/javascript/products.js")
   

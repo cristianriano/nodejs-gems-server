@@ -1,0 +1,50 @@
+<!--  Product Reviews List -->
+<ul>
+  <h4>Reviews</h4>
+  <li ng-repeat="review in product.reviews">
+    <blockquote>
+      <strong>{{review.stars}} Stars</strong>
+      {{review.body}}
+      <cite class="clearfix">—{{review.author}}</cite>
+    </blockquote>
+  </li>
+</ul>
+
+<!--  Review Form -->
+<!-- La directiva ng-submit ejecuta un metodo al presionar submit, en este caso manda el producto actual para q se actualice la review
+     Para activar las validaciones de Angular es necesario desactivar las que trae HTML5 por defecto
+     Los atibutos u objetos con el signo $ es por que son definidos por Angular-->
+<form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
+
+  <!--  Live Preview -->
+  <blockquote >
+    <strong>{{reviewCtrl.review.stars}} Stars</strong>
+    {{reviewCtrl.review.body}}
+    <cite class="clearfix">—{{reviewCtrl.review.author}}</cite>
+  </blockquote>
+
+  <!--  Review Form -->
+  <h4>Submit a Review</h4>
+  <fieldset class="form-group">
+    <!-- Tambien se debe poner el atributo como requerido para las validaciones de Angular
+
+          Dependiendo del estado del input pasa por 3 estados que se reflejan en las clases CSS que aplica Angular:
+              .ng-pristine: Implica que el campo no se ha editado
+              .ng-dirty:    El usuario a "tocado" el campo
+              .ng-valid
+              .ng-invalid
+              -->
+    <select ng-model="reviewCtrl.review.stars" class="form-control" ng-options="stars for stars in [5,4,3,2,1]" title="Stars" required>
+      <option value>Rate the Product</option>
+    </select>
+  </fieldset>
+  <fieldset class="form-group">
+    <textarea ng-model="reviewCtrl.review.body" class="form-control" placeholder="Write a short review of the product..." title="Review"></textarea>
+  </fieldset>
+  <fieldset class="form-group">
+    <input ng-model="reviewCtrl.review.author" type="email" class="form-control" placeholder="jimmyDean@example.org" title="Email" required />
+  </fieldset>
+  <fieldset class="form-group">
+    <input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
+  </fieldset>
+</form>
