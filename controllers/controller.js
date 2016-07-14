@@ -43,3 +43,11 @@ exports.login = function(req, res, next){
   });
 
 };
+
+// POST - logout
+exports.logout = function(req, res){
+  console.log('POST /logout');
+
+  req.logout();
+  res.redirect('/');
+};

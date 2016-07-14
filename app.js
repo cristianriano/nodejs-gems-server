@@ -109,6 +109,14 @@ app.use('/', routes);
 app.use('/gems', gemRoutes);
 app.use('/users', userRoutes);
 
+/* Catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});*/
+
+
 //------------------------------------------------------------START SERVER------------------------------------------------------------
 app.listen(8888, function() {
   console.log("Node server running on http://localhost:8888");

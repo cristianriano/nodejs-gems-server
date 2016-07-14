@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var Ctrl = require('../controllers/controller');
-var passport = require('passport');
 
 router.route('/')
   .get(Ctrl.renderRoot);
@@ -11,5 +10,8 @@ router.route('/register')
 
 router.route('/login')
   .post(Ctrl.login);
+
+router.route('logout')
+  .post(Ctrl.logout);
 
 module.exports = router;
