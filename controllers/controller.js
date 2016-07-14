@@ -13,6 +13,9 @@ exports.renderRoot = function(req, res){
 exports.renderRegister = function(req, res){
   console.log('GET /register');
 
+  // Redirigir si esta autenticado
+  if(req.user) redirect('/');
+
   res.status(200);
   res.render('register', {user: req.user});
 };

@@ -9,6 +9,8 @@ html
   body
     -if(!user)
       include ./login-navbar
+    -else
+      include ./user-navbar
     
     // Messages using express-flash
     - each message, type in messages
