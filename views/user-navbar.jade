@@ -11,29 +11,30 @@ nav.navbar.navbar-inverse.navbar-fixed-top
       a.navbar-brand(href="/") Crafted Gems
     #navbar.navbar-collapse.collapse
       ul.nav.navbar-nav
-        li.active
-          a(href="#") Home
-        li.inactive
-          a(href="#bout") Gems
-        li.dropdown
-          a.dropdown-toggle(href="#", data-toggle="dropdown" role="button" aria-haspopup="true", aria-expanded="false") Dropdown
-            span.caret
-          ul.dropdown-menu
-            li
-              a(href="#") Action
-            li
-              a(href="#") Another Action
-            li.divider(role="separator")
-            li.dropdown-header Nav header
-            li
-              a(href="#") Separated link
+        li(ng-class="{active: isNavTabSet(1)}")
+          a(ng-click="setNavTab(1)") Home
+        li(ng-class="{active: isNavTabSet(2)}")
+          a(ng-click="setNavTab(2)") Gems
+        //-
+          li.dropdown
+            a.dropdown-toggle(href="#", data-toggle="dropdown" role="button" aria-haspopup="true", aria-expanded="false") Dropdown
+              span.caret
+            ul.dropdown-menu
+              li
+                a(href="#") Action
+              li
+                a(href="#") Another Action
+              li.divider(role="separator")
+              li.dropdown-header Nav header
+              li
+                a(href="#") Separated link
       ul.nav.navbar-nav.navbar-right
         li.dropdown
           a.dropdown-toggle(href="#", data-toggle="dropdown" role="button" aria-haspopup="true", aria-expanded="false") Account
             span.caret
           ul.dropdown-menu
             li
-              a(href="#") Profile
+              a(ng-click="setNavTab(3)") Profile
             li.divider(role="separator")
             li
               a(href="/logout") Log-out

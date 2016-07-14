@@ -2,6 +2,19 @@ const URL = "http://localhost:8888"
 
 var app = angular.module('store', ['store-directives']);
 
+app.controller('NavigationController', function($scope){
+  $scope.navTab = 1;
+
+  $scope.isNavTabSet = function(checkTab){
+    return $scope.navTab == checkTab;
+  };
+
+  $scope.setNavTab = function(activeTab){
+    $scope.navTab = activeTab;
+  };
+
+});
+
 app.controller('StoreController', function($http, $scope){
   $scope.products = [];
 

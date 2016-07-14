@@ -5,16 +5,29 @@ block style
   link(rel="stylesheet", href="/stylesheets/style.css")
 
 block content
-  .container.list-group(ng-controller="StoreController as store")
+  // Home Tab
+  .container(ng-show="isNavTabSet(1)")
+    .row
+      .col-md-8.col-md-offset-2
+        p Home Nav Tab
+    
+  // Gems Tab
+  .container.list-group(ng-controller="StoreController as store" ng-show="isNavTabSet(2)")
     .row
       .col-md-6.col-md-offset-3
-        div.list-group-item(ng-repeat="product in products")
+        header
+          h1.text-center Crafted Gems
+          h2.text-center - an Agular powered store -
+        div.list-group-item(ng-repeat="product in products" style="margin-bottom: 10px")
           h3 {{product.name}}
             em.pull-right {{product.price | currency}}
           product-gallery
           product-tabs
-        
-  
+
+  .container(ng-show="isNavTabSet(3)")
+    include ./user/show
+
+// Angular scripts
 block scripts
   script(type="text/javascript" src="/javascript/angular.min.js")
   script(type="text/javascript" src="/javascript/app.js")
