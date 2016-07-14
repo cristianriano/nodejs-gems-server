@@ -1,5 +1,7 @@
 // User Navbar
-nav.navbar.navbar-default.navbar-fixed-top
+//- La clase  navbar-inverse: Hace la barra negra letras de seleccion blancas
+//-           navbar-default: La barra gris
+nav.navbar.navbar-inverse.navbar-fixed-top
   .container
     .navbar-header
       button.navbar-toggle.collapsed(type="button", data-toggle="collapse", data-target="#navbar", aria-expanded="false", aria-controls="navbar")
@@ -26,8 +28,12 @@ nav.navbar.navbar-default.navbar-fixed-top
             li
               a(href="#") Separated link
       ul.nav.navbar-nav.navbar-right
-        li
-          a(href="#") Default
-        li.active
-          a(href="#") Top Right Button
-            span.sr-only (current)
+        li.dropdown
+          a.dropdown-toggle(href="#", data-toggle="dropdown" role="button" aria-haspopup="true", aria-expanded="false") Account
+            span.caret
+          ul.dropdown-menu
+            li
+              a(href="#") Profile
+            li.divider(role="separator")
+            li
+              a(href="/logout") Log-out
