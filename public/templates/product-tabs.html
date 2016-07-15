@@ -13,12 +13,10 @@
   </ul>
 
   <!--  Description Tab's Content  -->
-  <!-- ng-include espera una variable con el nombre del snippet, es por esto que se usan comillas simples -->
-  <div ng-show="tab.isSet(1)" ng-include="'product-description.html'"></div>
+  <product-descriptions ng-show="tab.isSet(1)"></product-descriptions>
 
   <!--  Spec Tab's Content  -->
-  <!-- Se incluye en la etiqueta div la directiva de atributo, que se recomienda cuando la UI mezcla comportamiento -->
-  <div product-specs ng-show="tab.isSet(2)"></div>
+  <product-specs ng-show="tab.isSet(2)"></product-specs>
 
   <!--  Review Tab's Content  -->
   <!-- Se invoca la directiva de elemento, que se recomienda para envolver codigo de UI

@@ -16,7 +16,7 @@ app.directive("productReviews", function() {
 
 app.directive("productSpecs", function() {
   return {
-    restrict: 'A',
+    restrict: 'E',
     templateUrl: "/templates/product-specs.html"
   };
 });

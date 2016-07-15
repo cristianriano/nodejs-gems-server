@@ -24,8 +24,11 @@ block content
           product-gallery
           product-tabs
 
-  .container(ng-show="isNavTabSet(3)")
+  .container(ng-controller="UserController as userC" ng-show="isNavTabSet(3)" ng-init="user.id=(#{user.id} | number)")
     include ./user/show
+    
+  .container(ng-show="isNavTabSet(4)")
+    include ./user/password-change
 
 // Angular scripts
 block scripts

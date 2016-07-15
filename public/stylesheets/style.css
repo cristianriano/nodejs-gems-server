@@ -1,7 +1,34 @@
+body{
+  height: 100%;
+  overflow: hidden;
+}
+
+.scrollable{
+  overflow: scroll;;
+}
+
 .ng-invalid.ng-dirty{
   border-color: #FA787E;
 }
 
 .ng-valid.ng-dirty{
   border-color: #78FA89;
+}
+
+input, .input-group {
+  height: auto !important;
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+  line-height: 1;
 }

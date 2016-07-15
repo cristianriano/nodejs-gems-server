@@ -29,6 +29,35 @@ exports.addUser = function(req, res, next) {
 
 };
 
+// PATCH - Edit user
+exports.editUser = function(req, res, next){
+  console.log('PATCH /users/'+req.params.id);
+  console.log(req.body);
+
+  if(req.user.id != req.params.id){
+    req.flash('danger', '<strong>Error</strong>.');
+    res.render('index', {user: req.user});
+    next();
+  }
+  else{
+    var conditions = { id: req.params.id},
+        update = { name: req.body.name},
+        options = {};
+
+    User.update(conditions, update, false, function(err, numAffected){
+      if(err) {
+        req.flash('warning', '<strong> Uups! </strong>. Looks like there is an error with our server, try again later');
+        res.render('index', {user: req.user});
+        next();
+      }
+      else{
+        req.flash('success', '<strong>Success!</strong>. You have changed your name');
+        res.render('index', {user: req.user});
+        next();
+      }
+    });
+  }
+};
 
 /*
 var user = new User({

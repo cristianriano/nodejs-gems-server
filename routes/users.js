@@ -5,7 +5,7 @@ var UserCtrl = require('../controllers/userController');
 router.route('/')
   .post(UserCtrl.addUser);
 
-//router.route('/:id')
-//  .get(GemCtrl.findById);
+router.route('/:id')
+  .patch(UserCtrl.editUser);
 
 module.exports = router;

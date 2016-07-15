@@ -1,3 +1,5 @@
+(function(){
+
 const URL = "http://localhost:8888"
 
 var app = angular.module('store', ['store-directives']);
@@ -11,6 +13,32 @@ app.controller('NavigationController', function($scope){
 
   $scope.setNavTab = function(activeTab){
     $scope.navTab = activeTab;
+    window.scrollTo(0, 0);
+  };
+
+});
+
+app.controller('UserController', function($http, $scope){
+  $scope.user = {};
+
+  this.editUser = function(){
+
+    var req = {
+      method: "PATCH",
+      url: '/users/'+$scope.user.id,
+      headers: {
+        'content-type': 'application/json'
+      },
+      data: $scope.user
+    };
+
+    $http(req).success(function(data){
+      console.log(data);
+      location.reload();
+    }).error(function(err, status){
+      console.log(err);
+    });
+
   };
 
 });
@@ -39,7 +67,7 @@ app.controller('ReviewController', function($http, $scope) {
     // Peticion POST para almacenar el review
     var req = {
       method: 'POST',
-      url: URL+'/gems/'+product.id+'/reviews',
+      url: '/gems/'+product.id+'/reviews',
       headers: {
         'content-type': 'application/json'
       },
@@ -59,3 +87,5 @@ app.controller('ReviewController', function($http, $scope) {
 
   };
 });
+
+})();

@@ -1,3 +1,16 @@
+h1 Welcome #{user.name}
 .row
   .col-md-6.col-md-offset-3
-    header Welcome #{user.name}
+    form(ng-submit="userC.editUser()" name="formEdit")
+      label(for="emailField") Email
+      div.input-group
+        div.input-group-addon
+          span.glyphicon.glyphicon-envelope
+        input#emailField.form-control(type="text" name="email" value="#{user.email}" ng-init="user.email=#{user.email}" disabled)
+      label(for="editName") Name
+      div.input-group
+        div.input-group-addon
+          span.glyphicon.glyphicon-user
+        input#editName.form-control(type="text" placeholder="John Smith" name="name" ng-model="user.name")
+      input.btn.btn-primary(type="submit" value="Edit")
+      
